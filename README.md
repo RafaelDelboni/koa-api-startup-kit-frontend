@@ -1,4 +1,4 @@
-Koa API Startup Kit Frontend
+Koa API Startup Kit Frontend (WIP)
 ---------------------
 My personal react-redux frontend for the [Koa2 API startup kit](https://github.com/RafaelDelboni/koa-api-startup-kit), feel free to use and contribute if you like.
 
