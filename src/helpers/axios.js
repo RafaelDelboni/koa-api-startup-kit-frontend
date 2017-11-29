@@ -1,12 +1,23 @@
+const user = {
+  id: 1,
+  email: 'user@test.cc',
+  firstName: 'first',
+  lastName: 'last',
+  username: 'user'
+}
+
+const login = {
+  username: user.username,
+  password: '1234'
+}
+
+const token = 'eyJhbGciOiJIUzI1NiJ9'
+
 const fakeApi = {
   loginSignup: {
-    email: 'user@test.cc',
-    firstName: 'first',
-    id: 1,
-    lastName: 'last',
-    token: 'eyJhbGciOiJIUzI1NiJ9',
-    username: 'usertest'
-  }
+    ...user,
+    token
+  } 
 }
 
 const methods = ['get', 'post', 'put', 'patch', 'del']
@@ -22,10 +33,19 @@ class Axios {
           console.log(this.token)
           switch (method + path) {
             case 'post/user/login':
-              // throw new Error ('That username is taken')
+              if (body.username !== login.username 
+                || body.password !== login.password
+              ) {
+                throw new Error ('That username or password is wrong.')
+              }
               return fakeApi.loginSignup
             case 'get/user':
               return fakeApi.user
+            case 'put/user':
+              return fakeApi.user = {
+                ...fakeApi.user,
+                body
+              }
             default:
               throw new Error(
                 `Unknown endpoint: ${method}: ${path}`

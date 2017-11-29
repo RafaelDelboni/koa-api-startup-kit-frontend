@@ -8,8 +8,7 @@ import LoginForm from '../../components/Login'
 class Login extends Component {
   static propTypes = {
     auth: PropTypes.object,
-    login: PropTypes.func,
-    logout: PropTypes.func
+    login: PropTypes.func
   }
 
   onClickLogin = (values) => {

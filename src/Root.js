@@ -6,8 +6,8 @@ import './Root.css'
 import PrivateRoute from './components/PrivateRoute'
 import App from './containers/App'
 import Login from './containers/Login'
+import Profile from './containers/Profile'
 
-const Profile = () => <h3>Profile</h3>
 const Root = ({ store }) => (
   <Provider store={store}>
     <Switch>
