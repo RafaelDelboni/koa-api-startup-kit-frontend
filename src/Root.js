@@ -6,14 +6,14 @@ import './Root.css'
 import PrivateRoute from './components/PrivateRoute'
 import App from './containers/App'
 import Login from './containers/Login'
-import Profile from './containers/Profile'
+import Account from './containers/Account'
 
 const Root = ({ store }) => (
   <Provider store={store}>
     <Switch>
       <Route path="/" exact component={App} />
       <Route path="/login" exact component={Login} />
-      <PrivateRoute path="/profile" exact component={Profile} />
+      <PrivateRoute path="/account" exact component={Account} />
     </Switch>
   </Provider>
 )

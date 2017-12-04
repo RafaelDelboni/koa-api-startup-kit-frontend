@@ -1,4 +1,4 @@
-const user = {
+let user = {
   id: 1,
   email: 'user@test.cc',
   firstName: 'first',
@@ -13,11 +13,9 @@ const login = {
 
 const token = 'eyJhbGciOiJIUzI1NiJ9'
 
-const fakeApi = {
-  loginSignup: {
-    ...user,
-    token
-  } 
+const loginSignup = {
+  ...user,
+  token
 }
 
 const methods = ['get', 'post', 'put', 'patch', 'del']
@@ -30,7 +28,6 @@ class Axios {
     methods.forEach((method) =>
       this[method] = (path, { params, body } = {}) => {
         return delay(500).then(() => {
-          console.log(this.token)
           switch (method + path) {
             case 'post/user/login':
               if (body.username !== login.username 
@@ -38,12 +35,12 @@ class Axios {
               ) {
                 throw new Error ('That username or password is wrong.')
               }
-              return fakeApi.loginSignup
+              return loginSignup
             case 'get/user':
-              return fakeApi.user
+              return user
             case 'put/user':
-              return fakeApi.user = {
-                ...fakeApi.user,
+              return user = {
+                user,
                 body
               }
             default:
@@ -54,9 +51,6 @@ class Axios {
         })
       }
     )
-  }
-  setToken(token) {
-    this.token = token
   }
 }
 
