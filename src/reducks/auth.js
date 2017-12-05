@@ -1,6 +1,3 @@
-import get from 'lodash/get'
-import axios from '../helpers/axios'
-
 export const LOGIN = 'auth/LOGIN'
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'auth/LOGIN_FAIL'
@@ -14,7 +11,6 @@ export default function reducer(state = {}, action = {}) {
         loggingIn: true
       }
     case LOGIN_SUCCESS:
-      axios.setToken(get(action.result, 'token'))
       return {
         ...state,
         loggingIn: false,
@@ -28,7 +24,6 @@ export default function reducer(state = {}, action = {}) {
         loginError: action.error
       }
     case LOGOUT:
-      axios.setToken(null)
       return {
         ...state,
         user: null

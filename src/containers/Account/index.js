@@ -4,6 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as authActions from '../../reducks/auth'
 import * as userActions from '../../reducks/user'
+import AccountForm from '../../components/Account'
 import LogoutBtn from '../../components/Logout'
 
 class Account extends Component {
@@ -21,6 +22,10 @@ class Account extends Component {
     this.props.logout()
   }
 
+  onClickSaveUser = (values) => {
+    this.props.saveUser(values)
+  }
+
   render() {
     if (this.props.user.isFetching) {
       return <p>Loading...</p>;
@@ -28,7 +33,10 @@ class Account extends Component {
     return (
       <div>
         <h3>Account</h3>
-        <div>{this.props.user.firstName}</div>
+        <AccountForm
+          initialValues={this.props.user}
+          onSubmit={this.onClickSaveUser}
+        />
         <LogoutBtn onClick={this.onClickLogout} />
       </div>
     )

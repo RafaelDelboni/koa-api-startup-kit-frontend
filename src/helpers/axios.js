@@ -40,8 +40,8 @@ class Axios {
               return user
             case 'put/user':
               return user = {
-                user,
-                body
+                ...user,
+                ...body
               }
             default:
               throw new Error(
