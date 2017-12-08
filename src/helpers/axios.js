@@ -14,7 +14,7 @@ const login = {
 const token = 'eyJhbGciOiJIUzI1NiJ9'
 
 const loginSignup = {
-  ...user,
+  user,
   token
 }
 

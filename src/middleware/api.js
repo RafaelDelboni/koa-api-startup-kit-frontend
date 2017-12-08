@@ -16,8 +16,18 @@ export default store => next => action => {
   const actionPromise = promise(axios)
 
   actionPromise.then(
-    (result) => next({...rest, result, type: SUCCESS}),
-    (error) => next({...rest, error, type: FAILURE})
+    (result) => {
+      next({...rest, result, type: SUCCESS})
+      if (typeof action.onSuccess === 'function') {
+        action.onSuccess(next, result)
+      }
+    },
+    (error) => {
+      next({...rest, error, type: FAILURE})
+      if (typeof action.onFailure === 'function') {
+        action.onFailure(next, error)
+      }
+    }
   ).catch((error)=> {
     console.error('MIDDLEWARE ERROR:', error)
     next({...rest, error, type: FAILURE})

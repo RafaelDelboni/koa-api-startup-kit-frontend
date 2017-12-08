@@ -1,3 +1,5 @@
+import * as userActions from './user'
+
 export const LOGIN = 'auth/LOGIN'
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS'
 export const LOGIN_FAIL = 'auth/LOGIN_FAIL'
@@ -8,26 +10,22 @@ export default function reducer(state = {}, action = {}) {
     case LOGIN:
       return {
         ...state,
-        loggingIn: true
+        islogging: true
       }
     case LOGIN_SUCCESS:
       return {
         ...state,
-        loggingIn: false,
-        user: action.result
+        isLogging: false,
+        token: action.result.token
       }
     case LOGIN_FAIL:
       return {
         ...state,
-        loggingIn: false,
-        user: null,
+        isLogging: false,
         loginError: action.error
       }
     case LOGOUT:
-      return {
-        ...state,
-        user: null
-      }
+      return {}
     default:
       return state
   }
@@ -45,7 +43,10 @@ export function login(values) {
         username: values.username,
         password: values.password
       }
-    })
+    }),
+    onSuccess: (dispatch, result) => {
+      dispatch(userActions.updateStateUser(result.user))
+    }
   }
 }
 

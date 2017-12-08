@@ -27,6 +27,7 @@ const configureStore = preloadedState => {
       () => {
         saveState({
           auth: store.getState().auth,
+          user: store.getState().user
         })
       },
       1000

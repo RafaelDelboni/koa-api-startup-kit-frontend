@@ -9,7 +9,6 @@ import LogoutBtn from '../../components/Logout'
 
 class Account extends Component {
   static propTypes = {
-    auth: PropTypes.object,
     user: PropTypes.object,
     logout: PropTypes.func
   }
@@ -45,7 +44,6 @@ class Account extends Component {
 
 const mapStateToProps = (state, ownProps) => (
   {
-    auth: state.auth.user,
     user: state.user
   }
 )

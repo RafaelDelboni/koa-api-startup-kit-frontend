@@ -27,22 +27,29 @@ export default function reducer(state = {}, action = {}) {
     case SAVE_USER:
       return {
         ...state,
-        isFetching: true
+        isSaving: true
       }
     case SAVE_USER_SUCCESS:
       return {
         ...state,
-        isFetching: false,
+        isSaving: false,
         ...action.result
       }
     case SAVE_USER_FAIL:
       return {
         ...state,
-        isFetching: false,
+        isSaving: false,
         userError: action.error
       }
     default:
       return state
+  }
+}
+
+export function updateStateUser(user) {
+  return {
+    type: FETCH_USER_SUCCESS,
+    result: user
   }
 }
 

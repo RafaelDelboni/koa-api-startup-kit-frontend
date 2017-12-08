@@ -16,7 +16,7 @@ class Login extends Component {
   }
 
   render() {
-    return (this.props.auth 
+    return (this.props.auth && this.props.auth.token 
       ? <Redirect to={{ pathname: "/" }} /> 
       : <LoginForm onSubmit={this.onClickLogin} />
     )
@@ -25,7 +25,7 @@ class Login extends Component {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    auth: state.auth.user
+    auth: state.auth
   }
 }
 
