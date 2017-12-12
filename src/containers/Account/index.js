@@ -4,7 +4,7 @@ import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as authActions from '../../reducks/auth'
 import * as userActions from '../../reducks/user'
-import AccountForm from '../../components/Account'
+import AccountForm from '../../components/forms/Account'
 import LogoutBtn from '../../components/Logout'
 
 class Account extends Component {

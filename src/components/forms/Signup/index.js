@@ -1,17 +1,8 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
+import renderField from '../../fields/Input'
 
-const renderField = ({ input, label, type, meta: { touched, error } }) => (
-  <div>
-    <label>{label}</label>
-    <div>
-      <input {...input} placeholder={label} type={type} />
-      {touched && error && <span>{error}</span>}
-    </div>
-  </div>
-)
-
-const Account = props => {
+const Signup = props => {
   const { error, handleSubmit, pristine, reset, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
@@ -35,9 +26,21 @@ const Account = props => {
       />
       <Field
         name="lastName"
-        type="textg"
+        type="text"
         component={renderField}
         label="Last Name"
+      />
+      <Field
+        name="password"
+        type="password"
+        component={renderField}
+        label="Password"
+      />
+      <Field
+        name="passwordConfirm"
+        type="password"
+        component={renderField}
+        label="Confirm Password"
       />
       {error && <strong>{error}</strong>}
       <div>
@@ -52,4 +55,4 @@ const Account = props => {
   )
 }
 
-export default reduxForm({form: 'account'})(Account)
+export default reduxForm({form: 'signup'})(Signup)

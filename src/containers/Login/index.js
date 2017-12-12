@@ -3,7 +3,7 @@ import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as authActions from '../../reducks/auth'
-import LoginForm from '../../components/Login'
+import LoginForm from '../../components/forms/Login'
 
 class Login extends Component {
   static propTypes = {
