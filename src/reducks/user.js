@@ -4,6 +4,9 @@ export const FETCH_USER_FAIL = 'user/FETCH_USER_FAIL'
 export const SAVE_USER = 'user/SAVE_USER'
 export const SAVE_USER_SUCCESS = 'user/SAVE_USER_SUCCESS'
 export const SAVE_USER_FAIL = 'user/SAVE_USER_FAIL'
+export const SIGNUP_USER = 'user/SIGNUP_USER'
+export const SIGNUP_USER_SUCCESS = 'user/SIGNUP_USER_SUCCESS'
+export const SIGNUP_USER_FAIL = 'user/SIGNUP_USER_FAIL'
 
 export default function reducer(state = {}, action = {}) {
   switch (action.type) {
@@ -22,6 +25,23 @@ export default function reducer(state = {}, action = {}) {
       return {
         ...state,
         isFetching: false,
+        userError: action.error
+      }
+    case SIGNUP_USER:
+      return {
+        ...state,
+        isSaving: true
+      }
+    case SIGNUP_USER_SUCCESS:
+      return {
+        ...state,
+        isSaving: false,
+        ...action.result
+      }
+    case SIGNUP_USER_FAIL:
+      return {
+        ...state,
+        isSaving: false,
         userError: action.error
       }
     case SAVE_USER:
@@ -57,6 +77,21 @@ export function fetchUser(values) {
   return {
     types: [FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_FAIL],
     promise: (client) => client.get('/user')
+  }
+}
+
+export function signupUser(values) {
+  return {
+    types: [SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAIL],
+    promise: (client) => client.post('/user/signup', {
+      body: {
+        email: values.email,
+        username: values.username,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        password: values.password
+      }
+    })
   }
 }
 

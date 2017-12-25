@@ -38,6 +38,17 @@ class Axios {
               return loginSignup
             case 'get/user':
               return user
+            case 'post/user/signup':
+              return {
+                user: {
+                  id: 2,
+                  email: body.email,
+                  firstName: body.firstName,
+                  lastName: body.lastName,
+                  username: body.username
+                },
+                token
+              }
             case 'put/user':
               return user = {
                 ...user,
