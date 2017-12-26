@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import renderField from '../../fields/Input'
+import validate from './validate'
 
 const Signup = props => {
   const { error, handleSubmit, pristine, reset, submitting } = props
@@ -17,18 +18,6 @@ const Signup = props => {
         type="text"
         component={renderField}
         label="Username"
-      />
-      <Field
-        name="firstName"
-        type="text"
-        component={renderField}
-        label="First Name"
-      />
-      <Field
-        name="lastName"
-        type="text"
-        component={renderField}
-        label="Last Name"
       />
       <Field
         name="password"
@@ -55,4 +44,7 @@ const Signup = props => {
   )
 }
 
-export default reduxForm({form: 'signup'})(Signup)
+export default reduxForm({
+  form: 'signup',
+  validate
+})(Signup)

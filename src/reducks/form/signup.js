@@ -1,4 +1,4 @@
-import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAIL } from '../user'
+import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAIL } from '../auth'
 
 export default (state, action) => {
   switch(action.type) {

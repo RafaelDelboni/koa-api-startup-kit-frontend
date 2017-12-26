@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import * as userActions from '../../reducks/user'
+import * as authActions from '../../reducks/auth'
 import SignupForm from '../../components/forms/Signup'
 
 class Signup extends Component {
@@ -24,14 +24,14 @@ class Signup extends Component {
 
 const mapStateToProps = (state, ownProps) => (
   {
-    user: state.user
+    auth: state.auth
   }
 )
 
 export default withRouter(
   connect(
     mapStateToProps,
-    userActions
+    authActions
   )(
     Signup
   )

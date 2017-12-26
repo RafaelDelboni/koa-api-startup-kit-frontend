@@ -43,9 +43,9 @@ class Axios {
                 user: {
                   id: 2,
                   email: body.email,
-                  firstName: body.firstName,
-                  lastName: body.lastName,
-                  username: body.username
+                  username: body.username,
+                  password: body.password,
+                  passwordConfirm: body.passwordConfirm
                 },
                 token
               }
