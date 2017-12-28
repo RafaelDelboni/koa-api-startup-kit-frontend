@@ -2,8 +2,8 @@ import React from 'react'
 
 const NavbarStart = () => {
   return (
-    <div class="navbar-start">
-      <a class="navbar-item" href="/">
+    <div className="navbar-start">
+      <a className="navbar-item" href="/">
         Home
       </a>
     </div>

@@ -5,7 +5,7 @@ import { Route, Redirect } from 'react-router-dom'
 
 const PrivateRoute = ({ component: Component, auth, ...rest }) => (
   <Route {...rest} render={props =>
-      auth
+      auth.token
         ? <Component {...props} />
         : <Redirect to={{ pathname: "/login" }} />
   }/>
@@ -18,7 +18,7 @@ PrivateRoute.propTypes = {
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    auth: state.auth.token
+    auth: state.auth
   }
 }
 

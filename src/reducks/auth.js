@@ -8,7 +8,9 @@ export const SIGNUP_USER = 'user/SIGNUP_USER'
 export const SIGNUP_USER_SUCCESS = 'user/SIGNUP_USER_SUCCESS'
 export const SIGNUP_USER_FAIL = 'user/SIGNUP_USER_FAIL'
 
-export default function reducer(state = {}, action = {}) {
+const initialState = {}
+
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case LOGIN:
       return {
@@ -28,7 +30,7 @@ export default function reducer(state = {}, action = {}) {
         loginError: action.error
       }
     case LOGOUT:
-      return {}
+      return initialState
     case SIGNUP_USER:
       return {
         ...state,
@@ -86,7 +88,8 @@ export function signupUser(values) {
     }
   }
 }
-export function logout() {
-  userActions.updateStateUser({})
-  return { type: LOGOUT }
+
+export function logout(dispatch) {
+  dispatch(userActions.clearStateUser())
+  dispatch({type: LOGOUT})
 }

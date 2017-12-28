@@ -17,8 +17,8 @@ class Account extends Component {
     this.props.fetchUser()
   }
 
-  onClickLogout = () => {
-    this.props.logout()
+  onclickLogout = () => {
+    this.props.logout(this.props.dispatch)
   }
 
   onClickSaveUser = (values) => {
@@ -36,7 +36,7 @@ class Account extends Component {
           initialValues={this.props.user}
           onSubmit={this.onClickSaveUser}
         />
-        <LogoutBtn onClick={this.onClickLogout} />
+        <LogoutBtn onClick={this.onclickLogout} />
       </div>
     )
   }
@@ -48,14 +48,18 @@ const mapStateToProps = (state, ownProps) => (
   }
 )
 
+const mapDispatchToProps = (dispatch) => ( 
+  {
+    ...authActions,
+    ...userActions,
+    dispatch
+  }
+)
 
 export default withRouter(
   connect(
     mapStateToProps,
-    {
-      ...authActions,
-      ...userActions
-    }
+    mapDispatchToProps
   )(
     Account
   )

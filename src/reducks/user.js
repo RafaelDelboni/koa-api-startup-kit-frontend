@@ -4,8 +4,11 @@ export const FETCH_USER_FAIL = 'user/FETCH_USER_FAIL'
 export const SAVE_USER = 'user/SAVE_USER'
 export const SAVE_USER_SUCCESS = 'user/SAVE_USER_SUCCESS'
 export const SAVE_USER_FAIL = 'user/SAVE_USER_FAIL'
+export const CLEAR_USER = 'user/CLEAR_USER'
 
-export default function reducer(state = {}, action = {}) {
+const initialState = {}
+
+export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
     case FETCH_USER:
       return {
@@ -41,8 +44,16 @@ export default function reducer(state = {}, action = {}) {
         isSaving: false,
         userError: action.error
       }
+    case CLEAR_USER:
+      return initialState 
     default:
       return state
+  }
+}
+
+export function clearStateUser() {
+  return {
+    type: CLEAR_USER
   }
 }
 
