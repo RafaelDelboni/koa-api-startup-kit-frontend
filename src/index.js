@@ -1,3 +1,5 @@
+import 'bulma/css/bulma.css'
+
 import React from 'react'
 import { render } from 'react-dom'
 import { BrowserRouter as Router } from 'react-router-dom'
@@ -14,7 +16,7 @@ render(
   <Router>
     <Root store={store} />
   </Router>,
-  document.getElementById('root')
+  document.getElementById('app')
 )
 
-registerServiceWorker();
+registerServiceWorker()
