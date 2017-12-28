@@ -86,6 +86,7 @@ export function signupUser(values) {
     }
   }
 }
-export function logout(id) {
+export function logout() {
+  userActions.updateStateUser({})
   return { type: LOGOUT }
 }

@@ -27,7 +27,7 @@ class Account extends Component {
 
   render() {
     if (this.props.user.isFetching) {
-      return <p>Loading...</p>;
+      return <p>Loading...</p>
     }
     return (
       <div>
