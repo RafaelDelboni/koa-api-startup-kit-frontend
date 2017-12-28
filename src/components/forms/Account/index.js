@@ -1,6 +1,7 @@
 import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import renderField from '../../fields/Input'
+import validate from './validate'
 
 const Account = props => {
   const { error, handleSubmit, pristine, reset, submitting } = props
@@ -43,4 +44,7 @@ const Account = props => {
   )
 }
 
-export default reduxForm({form: 'account'})(Account)
+export default reduxForm({
+  form: 'account',
+  validate
+})(Account)
