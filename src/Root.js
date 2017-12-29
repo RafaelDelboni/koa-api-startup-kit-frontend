@@ -13,12 +13,14 @@ const Root = ({ store }) => (
   <Provider store={store}>
     <div>
       <Navbar />
-      <Switch>
-        <Route path="/" exact component={App} />
-        <Route path="/login" exact component={Login} />
-        <Route path="/signup" exact component={Signup} />
-        <PrivateRoute path="/account" exact component={Account} />
-      </Switch>
+      <section className="section">
+        <Switch>
+          <Route path="/" exact component={App} />
+          <Route path="/login" exact component={Login} />
+          <Route path="/signup" exact component={Signup} />
+          <PrivateRoute path="/account" exact component={Account} />
+        </Switch>
+      </section>
     </div>
   </Provider>
 )
