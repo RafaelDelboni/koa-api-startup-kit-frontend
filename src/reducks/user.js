@@ -1,16 +1,16 @@
-export const FETCH_USER = 'user/FETCH_USER'
+export const FETCH_USER_REQUEST = 'user/FETCH_USER_REQUEST'
 export const FETCH_USER_SUCCESS = 'user/FETCH_USER_SUCCESS'
-export const FETCH_USER_FAIL = 'user/FETCH_USER_FAIL'
-export const SAVE_USER = 'user/SAVE_USER'
+export const FETCH_USER_FAILURE = 'user/FETCH_USER_FAILURE'
+export const SAVE_USER_REQUEST = 'user/SAVE_USER_REQUEST'
 export const SAVE_USER_SUCCESS = 'user/SAVE_USER_SUCCESS'
-export const SAVE_USER_FAIL = 'user/SAVE_USER_FAIL'
+export const SAVE_USER_FAILURE = 'user/SAVE_USER_FAILURE'
 export const CLEAR_USER = 'user/CLEAR_USER'
 
 const initialState = {}
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case FETCH_USER:
+    case FETCH_USER_REQUEST:
       return {
         ...state,
         isFetching: true
@@ -21,13 +21,13 @@ export default function reducer(state = initialState, action = {}) {
         isFetching: false,
         ...action.result
       }
-    case FETCH_USER_FAIL:
+    case FETCH_USER_FAILURE:
       return {
         ...state,
         isFetching: false,
         userError: action.error
       }
-    case SAVE_USER:
+    case SAVE_USER_REQUEST:
       return {
         ...state,
         isSaving: true
@@ -38,7 +38,7 @@ export default function reducer(state = initialState, action = {}) {
         isSaving: false,
         ...action.result
       }
-    case SAVE_USER_FAIL:
+    case SAVE_USER_FAILURE:
       return {
         ...state,
         isSaving: false,
@@ -66,14 +66,14 @@ export function updateStateUser(user) {
 
 export function fetchUser(values) {
   return {
-    types: [FETCH_USER, FETCH_USER_SUCCESS, FETCH_USER_FAIL],
+    types: [FETCH_USER_FAILURE, FETCH_USER_SUCCESS, FETCH_USER_FAILURE],
     promise: (client) => client.get('/user')
   }
 }
 
 export function saveUser(values) {
   return {
-    types: [SAVE_USER, SAVE_USER_SUCCESS, SAVE_USER_FAIL],
+    types: [SAVE_USER_REQUEST, SAVE_USER_SUCCESS, SAVE_USER_FAILURE],
     promise: (client) => client.put('/user', {
       body: {
         email: values.email,

@@ -4,12 +4,19 @@ import throttle from 'lodash/throttle'
 import { saveState } from '../helpers/localStorage'
 import api from '../middleware/api'
 import rootReducer from '../reducks'
+import { loadingBarMiddleware } from 'react-redux-loading-bar'
 
 const configureStore = preloadedState => {
   const store = createStore(
     rootReducer,
     preloadedState,
-    applyMiddleware(thunk, api)
+    applyMiddleware(
+      thunk,
+      api,
+      loadingBarMiddleware({
+        promiseTypeSuffixes: ['REQUEST', 'SUCCESS', 'FAILURE'],
+      })
+    )
   )
 
   store.subscribe(

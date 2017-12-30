@@ -12,20 +12,22 @@ export default ({
   }
 }) => (
   <div className="field">
-    <label>{label}</label>
+    <label className="label">{label}</label>
     <div className="control">
       <input
-        className={"input " + (isLarge ? 'is-large' : '')}
+        className={
+          "input " +
+          (isLarge ? 'is-large ' : '') +
+          (touched && error ? 'is-danger' : '')
+        }
         {...input}
         placeholder={label || placeholder}
         type={type}
       />
       {
         touched &&
-          error && 
-          <span className="notification is-danger">
-            {error}
-          </span>
+          error &&
+          <p className="help is-danger">{error}</p>
       }
     </div>
   </div>

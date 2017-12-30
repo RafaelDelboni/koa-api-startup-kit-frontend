@@ -1,8 +1,8 @@
-import { SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAIL } from '../auth'
+import { SIGNUP_USER_REQUEST, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE } from '../auth'
 
 export default (state, action) => {
   switch(action.type) {
-    case SIGNUP_USER:
+    case SIGNUP_USER_REQUEST:
       return {
         ...state,
         submitting: true,
@@ -14,7 +14,7 @@ export default (state, action) => {
         submitting: false,
         submitSucceeded: true
       } 
-    case SIGNUP_USER_FAIL:
+    case SIGNUP_USER_FAILURE:
       return {
         ...state,
         error: action.error.message,

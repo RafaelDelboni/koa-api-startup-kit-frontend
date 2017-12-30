@@ -16,8 +16,20 @@ class Signup extends Component {
 
   render() {
     return (this.props.auth && this.props.auth.token 
-      ? <Redirect to={{ pathname: "/" }} /> 
-      : <SignupForm onSubmit={this.onClickSaveUser} />
+      ?
+      <Redirect to={{ pathname: "/" }} /> 
+      :
+      <div className="container has-text-centered">
+        <div className="columns">
+          <div className="column is-one-third is-offset-one-third">
+            <h3 className="title has-text-grey">Signup</h3>
+            <p className="subtitle has-text-grey">We need some basic information about you.</p>
+            <div className="box">
+              <SignupForm onSubmit={this.onClickSaveUser} />
+            </div>
+          </div>
+        </div>
+      </div>
     )
   }
 }

@@ -2,9 +2,10 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import renderField from '../../fields/Input'
 import validate from './validate'
+import Notification from '../../fields/Notification'
 
 const Account = props => {
-  const { error, handleSubmit, pristine, reset, submitting } = props
+  const { error, handleSubmit, submitting } = props
   return (
     <form onSubmit={handleSubmit}>
       <Field
@@ -31,13 +32,10 @@ const Account = props => {
         component={renderField}
         label="Last Name"
       />
-      {error && <strong>{error}</strong>}
+      <Notification type="danger" message={error} />
       <div>
-        <button type="submit" disabled={submitting}>
+        <button className="button is-info" type="submit" disabled={submitting}>
           Save
-        </button>
-        <button type="button" disabled={pristine || submitting} onClick={reset}>
-          Clear Values
         </button>
       </div>
     </form>

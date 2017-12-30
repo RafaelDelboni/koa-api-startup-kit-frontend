@@ -2,10 +2,8 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import * as authActions from '../../reducks/auth'
 import * as userActions from '../../reducks/user'
 import AccountForm from '../../components/forms/Account'
-import LogoutBtn from '../../components/Logout'
 
 class Account extends Component {
   static propTypes = {
@@ -17,26 +15,22 @@ class Account extends Component {
     this.props.fetchUser()
   }
 
-  onclickLogout = () => {
-    this.props.logout(this.props.dispatch)
-  }
-
   onClickSaveUser = (values) => {
     this.props.saveUser(values)
   }
 
   render() {
-    if (this.props.user.isFetching) {
-      return <p>Loading...</p>
-    }
     return (
-      <div>
-        <h3>Account</h3>
-        <AccountForm
-          initialValues={this.props.user}
-          onSubmit={this.onClickSaveUser}
-        />
-        <LogoutBtn onClick={this.onclickLogout} />
+      <div className="container">
+        <div className="columns">
+          <div className="column is-one-third is-offset-one-third">
+            <h3 className="title has-text-grey">Account</h3>
+            <AccountForm
+              initialValues={this.props.user}
+              onSubmit={this.onClickSaveUser}
+            />
+          </div>
+        </div>
       </div>
     )
   }
@@ -48,18 +42,12 @@ const mapStateToProps = (state, ownProps) => (
   }
 )
 
-const mapDispatchToProps = (dispatch) => ( 
-  {
-    ...authActions,
-    ...userActions,
-    dispatch
-  }
-)
-
 export default withRouter(
   connect(
     mapStateToProps,
-    mapDispatchToProps
+    {
+      ...userActions
+    }
   )(
     Account
   )

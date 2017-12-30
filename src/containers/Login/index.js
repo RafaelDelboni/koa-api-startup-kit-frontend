@@ -17,8 +17,25 @@ class Login extends Component {
 
   render() {
     return (this.props.auth && this.props.auth.token 
-      ? <Redirect to={{ pathname: "/" }} /> 
-      : <LoginForm onSubmit={this.onClickLogin} />
+      ?
+      <Redirect to={{ pathname: "/" }} />
+      :
+      <div className="container has-text-centered">
+        <div className="columns">
+          <div className="column is-one-third is-offset-one-third">
+            <h3 className="title has-text-grey">Login</h3>
+            <p className="subtitle has-text-grey">Please login to proceed.</p>
+            <div className="box"> 
+              <LoginForm onSubmit={this.onClickLogin} />
+            </div>
+            <p className="has-text-grey">
+              <a href="/Signup">Sign Up</a>
+              &nbsp;·&nbsp;
+              <a href="/">Forgot Password</a>
+            </p>
+          </div>
+        </div>
+      </div>
     )
   }
 }

@@ -4,6 +4,8 @@ import PropTypes from 'prop-types'
 import { withRouter } from 'react-router-dom'
 import { Brand, End, Start } from '../../components/Navbar'
 import * as authActions from '../../reducks/auth'
+import LoadingBar from 'react-redux-loading-bar'
+import './Navbar.css'
 
 class Navbar extends Component {
   static propTypes = {
@@ -18,6 +20,7 @@ class Navbar extends Component {
   render() {
     return (
       <nav className="navbar is-dark topNav">
+        <LoadingBar className="LoadingBar" />
         <div className="container">
           <Brand />
           <div id="navMenuColordark" className="navbar-menu">

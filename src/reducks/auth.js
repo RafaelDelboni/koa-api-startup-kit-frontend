@@ -1,18 +1,18 @@
 import * as userActions from './user'
 
-export const LOGIN = 'auth/LOGIN'
+export const LOGIN_REQUEST = 'auth/LOGIN_REQUEST'
 export const LOGIN_SUCCESS = 'auth/LOGIN_SUCCESS'
-export const LOGIN_FAIL = 'auth/LOGIN_FAIL'
+export const LOGIN_FAILURE = 'auth/LOGIN_FAILURE'
 export const LOGOUT = 'auth/LOGOUT'
-export const SIGNUP_USER = 'user/SIGNUP_USER'
+export const SIGNUP_USER_REQUEST = 'user/SIGNUP_USER_REQUEST'
 export const SIGNUP_USER_SUCCESS = 'user/SIGNUP_USER_SUCCESS'
-export const SIGNUP_USER_FAIL = 'user/SIGNUP_USER_FAIL'
+export const SIGNUP_USER_FAILURE = 'user/SIGNUP_USER_FAILURE'
 
 const initialState = {}
 
 export default function reducer(state = initialState, action = {}) {
   switch (action.type) {
-    case LOGIN:
+    case LOGIN_REQUEST:
       return {
         ...state,
         islogging: true
@@ -23,7 +23,7 @@ export default function reducer(state = initialState, action = {}) {
         isLogging: false,
         token: action.result.token
       }
-    case LOGIN_FAIL:
+    case LOGIN_FAILURE:
       return {
         ...state,
         isLogging: false,
@@ -31,7 +31,7 @@ export default function reducer(state = initialState, action = {}) {
       }
     case LOGOUT:
       return initialState
-    case SIGNUP_USER:
+    case SIGNUP_USER_REQUEST:
       return {
         ...state,
         isSignuping: true
@@ -42,7 +42,7 @@ export default function reducer(state = initialState, action = {}) {
         isSignuping: false,
         token: action.result.token
       }
-    case SIGNUP_USER_FAIL:
+    case SIGNUP_USER_FAILURE:
       return {
         ...state,
         isSignuping: false,
@@ -59,7 +59,7 @@ export function isLoaded(globalState) {
 
 export function login(values) {
   return {
-    types: [LOGIN, LOGIN_SUCCESS, LOGIN_FAIL],
+    types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     promise: (client) => client.post('/user/login', {
       body: {
         username: values.username,
@@ -74,7 +74,7 @@ export function login(values) {
 
 export function signupUser(values) {
   return {
-    types: [SIGNUP_USER, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAIL],
+    types: [SIGNUP_USER_REQUEST, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE],
     promise: (client) => client.post('/user/signup', {
       body: {
         email: values.email,
@@ -90,6 +90,6 @@ export function signupUser(values) {
 }
 
 export function logout(dispatch) {
-  dispatch(userActions.clearStateUser())
   dispatch({type: LOGOUT})
+  dispatch(userActions.clearStateUser())
 }

@@ -1,8 +1,8 @@
-import { SAVE_USER, SAVE_USER_SUCCESS, SAVE_USER_FAIL } from '../user'
+import { SAVE_USER_REQUEST, SAVE_USER_SUCCESS, SAVE_USER_FAILURE } from '../user'
 
 export default (state, action) => {
   switch(action.type) {
-    case SAVE_USER:
+    case SAVE_USER_REQUEST:
       return {
         ...state,
         submitting: true,
@@ -14,7 +14,7 @@ export default (state, action) => {
         submitting: false,
         submitSucceeded: true
       } 
-    case SAVE_USER_FAIL:
+    case SAVE_USER_FAILURE:
       return {
         ...state,
         error: action.error.message,

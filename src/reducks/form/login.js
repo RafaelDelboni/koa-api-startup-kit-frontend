@@ -1,8 +1,8 @@
-import { LOGIN, LOGIN_SUCCESS, LOGIN_FAIL } from '../auth'
+import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE } from '../auth'
 
 export default (state, action) => {
   switch(action.type) {
-    case LOGIN:
+    case LOGIN_REQUEST:
       return {
         ...state,
         submitting: true,
@@ -14,7 +14,7 @@ export default (state, action) => {
         submitting: false,
         submitSucceeded: true
       } 
-    case LOGIN_FAIL:
+    case LOGIN_FAILURE:
       return {
         ...state,
         error: action.error.message,
