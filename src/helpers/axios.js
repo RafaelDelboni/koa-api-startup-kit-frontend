@@ -54,6 +54,16 @@ class Axios {
                 ...user,
                 ...body
               }
+            case 'put/user/forgot':
+              if (body.email !== user.email) {
+                throw new Error ('Email not found.')
+              }
+              return body
+            case 'put/user/reset':
+              if (body.email !== user.email || body.token !== '123') {
+                throw new Error ('Password reset link is invalid or expired.')
+              }
+              return { status: 'ok' }
             default:
               throw new Error(
                 `Unknown endpoint: ${method}: ${path}`

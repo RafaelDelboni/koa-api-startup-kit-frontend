@@ -3,16 +3,16 @@ import { connect } from 'react-redux'
 import { withRouter, Redirect } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import * as authActions from '../../reducks/auth'
-import LoginForm from '../../components/forms/Login'
+import ForgotPasswordForm from '../../components/forms/ForgotPassword'
 
-class Login extends Component {
+class ForgotPassword extends Component {
   static propTypes = {
     auth: PropTypes.object,
-    login: PropTypes.func
+    forgotPassword: PropTypes.func
   }
 
-  onClickLogin = (values) => {
-    this.props.login(values)
+  onClickForgotPassword = (values) => {
+    this.props.forgotPassword(values)
   }
 
   render() {
@@ -23,15 +23,15 @@ class Login extends Component {
       <div className="container has-text-centered">
         <div className="columns">
           <div className="column is-one-third is-offset-one-third">
-            <h3 className="title has-text-grey">Login</h3>
-            <p className="subtitle has-text-grey">Please login to proceed.</p>
+            <h3 className="title has-text-grey">Forgot your password?</h3>
+            <p className="subtitle has-text-grey">Please enter your email.</p>
             <div className="box"> 
-              <LoginForm onSubmit={this.onClickLogin} />
+              <ForgotPasswordForm onSubmit={this.onClickForgotPassword} />
             </div>
             <p className="has-text-grey">
               <a href="/Signup">Sign Up</a>
               &nbsp;·&nbsp;
-              <a href="/Forgot">Forgot Password</a>
+              <a href="/Login">Login</a>
             </p>
           </div>
         </div>
@@ -51,6 +51,6 @@ export default withRouter(
     mapStateToProps,
     authActions
   )(
-    Login
+    ForgotPassword
   )
 )

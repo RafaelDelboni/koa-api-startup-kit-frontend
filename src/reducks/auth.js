@@ -7,6 +7,12 @@ export const LOGOUT = 'auth/LOGOUT'
 export const SIGNUP_USER_REQUEST = 'user/SIGNUP_USER_REQUEST'
 export const SIGNUP_USER_SUCCESS = 'user/SIGNUP_USER_SUCCESS'
 export const SIGNUP_USER_FAILURE = 'user/SIGNUP_USER_FAILURE'
+export const FORGOT_PASSWORD_REQUEST = 'user/FORGOT_PASSWORD_REQUEST'
+export const FORGOT_PASSWORD_SUCCESS = 'user/FORGOT_PASSWORD_SUCCESS'
+export const FORGOT_PASSWORD_FAILURE = 'user/FORGOT_PASSWORD_FAILURE'
+export const RESET_PASSWORD_REQUEST = 'user/RESET_PASSWORD_REQUEST'
+export const RESET_PASSWORD_SUCCESS = 'user/RESET_PASSWORD_SUCCESS'
+export const RESET_PASSWORD_FAILURE = 'user/RESET_PASSWORD_FAILURE'
 
 const initialState = {}
 
@@ -48,6 +54,40 @@ export default function reducer(state = initialState, action = {}) {
         isSignuping: false,
         signupError: action.error
       }
+    case FORGOT_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isForgetingPassword: true
+      }
+    case FORGOT_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isForgetingPassword: false,
+        token: action.result.token
+      }
+    case FORGOT_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isForgetingPassword: false,
+        forgotPasswordError: action.error
+      }
+    case RESET_PASSWORD_REQUEST:
+      return {
+        ...state,
+        isResetingPassword: true
+      }
+    case RESET_PASSWORD_SUCCESS:
+      return {
+        ...state,
+        isResetingPassword: false,
+        token: action.result.token
+      }
+    case RESET_PASSWORD_FAILURE:
+      return {
+        ...state,
+        isResetingPassword: false,
+        forgotPasswordError: action.error
+      }
     default:
       return state
   }
@@ -86,6 +126,39 @@ export function signupUser(values) {
     onSuccess: (dispatch, result) => {
       dispatch(userActions.updateStateUser(result.user))
     }
+  }
+}
+
+export function forgotPassword(values) {
+  return {
+    types: [
+      FORGOT_PASSWORD_REQUEST,
+      FORGOT_PASSWORD_SUCCESS,
+      FORGOT_PASSWORD_FAILURE
+    ],
+    promise: (client) => client.put('/user/forgot', {
+      body: {
+        email: values.email
+      }
+    })
+  }
+}
+
+export function resetPassword(values) {
+  return {
+    types: [
+      RESET_PASSWORD_REQUEST,
+      RESET_PASSWORD_SUCCESS,
+      RESET_PASSWORD_FAILURE
+    ],
+    promise: (client) => client.put('/user/reset', {
+      body: {
+        email: values.email,
+        token: values.token,
+        password: values.password,
+        passwordConfirm: values.passwordConfirm
+      }
+    })
   }
 }
 

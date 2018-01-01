@@ -7,6 +7,8 @@ import Navbar from './containers/Navbar'
 import App from './containers/App'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
+import ForgotPassword from './containers/ForgotPassword'
+import ResetPassword from './containers/ResetPassword'
 import Account from './containers/Account'
 
 const Root = ({ store }) => (
@@ -18,6 +20,8 @@ const Root = ({ store }) => (
           <Route path="/" exact component={App} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
+          <Route path="/forgot" exact component={ForgotPassword} />
+          <Route path="/reset/:token/:email" exact component={ResetPassword} />
           <PrivateRoute path="/account" exact component={Account} />
         </Switch>
       </section>

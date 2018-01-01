@@ -6,6 +6,7 @@ export default ({
   placeholder,
   isLarge,
   type,
+  disabled,
   meta: {
     touched,
     error
@@ -23,6 +24,7 @@ export default ({
         {...input}
         placeholder={label || placeholder}
         type={type}
+        disabled={disabled}
       />
       {
         touched &&
