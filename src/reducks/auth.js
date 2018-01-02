@@ -101,10 +101,8 @@ export function login(values) {
   return {
     types: [LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE],
     promise: (client) => client.post('/user/login', {
-      body: {
-        username: values.username,
-        password: values.password
-      }
+      username: values.username,
+      password: values.password
     }),
     onSuccess: (dispatch, result) => {
       dispatch(userActions.updateStateUser(result.user))
@@ -116,12 +114,10 @@ export function signupUser(values) {
   return {
     types: [SIGNUP_USER_REQUEST, SIGNUP_USER_SUCCESS, SIGNUP_USER_FAILURE],
     promise: (client) => client.post('/user/signup', {
-      body: {
-        email: values.email,
-        username: values.username,
-        password: values.password,
-        passwordConfirm: values.passwordConfirm
-      }
+      email: values.email,
+      username: values.username,
+      password: values.password,
+      passwordConfirm: values.passwordConfirm
     }),
     onSuccess: (dispatch, result) => {
       dispatch(userActions.updateStateUser(result.user))
@@ -137,9 +133,7 @@ export function forgotPassword(values) {
       FORGOT_PASSWORD_FAILURE
     ],
     promise: (client) => client.put('/user/forgot', {
-      body: {
-        email: values.email
-      }
+      email: values.email
     })
   }
 }
@@ -152,12 +146,10 @@ export function resetPassword(values) {
       RESET_PASSWORD_FAILURE
     ],
     promise: (client) => client.put('/user/reset', {
-      body: {
-        email: values.email,
-        token: values.token,
-        password: values.password,
-        passwordConfirm: values.passwordConfirm
-      }
+      email: values.email,
+      token: values.token,
+      password: values.password,
+      passwordConfirm: values.passwordConfirm
     })
   }
 }

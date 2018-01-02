@@ -66,7 +66,7 @@ export function updateStateUser(user) {
 
 export function fetchUser(values) {
   return {
-    types: [FETCH_USER_FAILURE, FETCH_USER_SUCCESS, FETCH_USER_FAILURE],
+    types: [FETCH_USER_REQUEST, FETCH_USER_SUCCESS, FETCH_USER_FAILURE],
     promise: (client) => client.get('/user')
   }
 }
@@ -74,13 +74,11 @@ export function fetchUser(values) {
 export function saveUser(values) {
   return {
     types: [SAVE_USER_REQUEST, SAVE_USER_SUCCESS, SAVE_USER_FAILURE],
-    promise: (client) => client.put('/user', {
-      body: {
-        email: values.email,
-        username: values.username,
-        firstName: values.firstName,
-        lastName: values.lastName
-      }
+    promise: (client) => client.put(`/user/${values.id}`, {
+      email: values.email,
+      username: values.username,
+      firstName: values.firstName,
+      lastName: values.lastName
     })
   }
 }

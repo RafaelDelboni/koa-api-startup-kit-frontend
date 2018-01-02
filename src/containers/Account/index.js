@@ -20,6 +20,9 @@ class Account extends Component {
   }
 
   render() {
+    if (this.props.user.isFetching) {
+      return false 
+    }
     return (
       <div className="container">
         <div className="columns">

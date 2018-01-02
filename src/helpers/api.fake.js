@@ -8,7 +8,7 @@ let user = {
 
 const login = {
   username: user.username,
-  password: '1234'
+  password: '12341234'
 }
 
 const token = 'eyJhbGciOiJIUzI1NiJ9'
@@ -26,7 +26,7 @@ const delay = (ms) =>
 class Axios {
   constructor(req) {
     methods.forEach((method) =>
-      this[method] = (path, { params, body } = {}) => {
+      this[method] = (path, body = {}) => {
         return delay(500).then(() => {
           switch (method + path) {
             case 'post/user/login':
@@ -35,35 +35,39 @@ class Axios {
               ) {
                 throw new Error ('That username or password is wrong.')
               }
-              return loginSignup
+              return { data: loginSignup }
             case 'get/user':
-              return user
+              return { data: user }
             case 'post/user/signup':
               return {
-                user: {
-                  id: 2,
-                  email: body.email,
-                  username: body.username,
-                  password: body.password,
-                  passwordConfirm: body.passwordConfirm
-                },
-                token
+                data: {
+                  user: {
+                    id: 2,
+                    email: body.email,
+                    username: body.username,
+                    password: body.password,
+                    passwordConfirm: body.passwordConfirm
+                  },
+                  token
+                }
               }
             case 'put/user':
-              return user = {
-                ...user,
-                ...body
+              return {
+                data: {
+                  ...user,
+                  ...body
+                }
               }
             case 'put/user/forgot':
               if (body.email !== user.email) {
                 throw new Error ('Email not found.')
               }
-              return body
+              return { data: body }
             case 'put/user/reset':
               if (body.email !== user.email || body.token !== '123') {
                 throw new Error ('Password reset link is invalid or expired.')
               }
-              return { status: 'ok' }
+              return { data: {status: 'ok' } }
             default:
               throw new Error(
                 `Unknown endpoint: ${method}: ${path}`

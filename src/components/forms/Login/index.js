@@ -2,6 +2,7 @@ import React from 'react'
 import { Field, reduxForm } from 'redux-form'
 import renderField from '../../fields/Input'
 import Notification from '../../fields/Notification'
+import validate from './validate'
 
 const Login = props => {
   const { error, handleSubmit, submitting } = props
@@ -30,5 +31,6 @@ const Login = props => {
 }
 
 export default reduxForm({
-  form: 'login'
+  form: 'login',
+  validate
 })(Login)

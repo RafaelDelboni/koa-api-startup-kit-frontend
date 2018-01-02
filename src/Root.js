@@ -4,7 +4,7 @@ import { Provider } from 'react-redux'
 import { Route, Switch } from 'react-router-dom'
 import PrivateRoute from './components/PrivateRoute'
 import Navbar from './containers/Navbar'
-import App from './containers/App'
+import Home from './containers/Home'
 import Login from './containers/Login'
 import Signup from './containers/Signup'
 import ForgotPassword from './containers/ForgotPassword'
@@ -17,7 +17,7 @@ const Root = ({ store }) => (
       <Navbar />
       <section className="section">
         <Switch>
-          <Route path="/" exact component={App} />
+          <Route path="/" exact component={Home} />
           <Route path="/login" exact component={Login} />
           <Route path="/signup" exact component={Signup} />
           <Route path="/forgot" exact component={ForgotPassword} />
